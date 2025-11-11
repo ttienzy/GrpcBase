@@ -1,0 +1,338 @@
+﻿using System.Windows;
+using BankingSystem.Contracts;
+using Grpc.Net.Client;
+
+
+namespace BankingSystem.Client;
+
+public partial class MainWindow : Window
+{
+    private GrpcChannel? _channel;
+    private BankingService.BankingServiceClient? _client;
+    private CancellationTokenSource? _notificationCts;
+    private bool _isSubscribed = false;
+
+    public MainWindow()
+    {
+        InitializeComponent();
+        InitializeGrpcClient();
+        Closing += MainWindow_Closing;
+    }
+
+    private void InitializeGrpcClient()
+    {
+        try
+        {
+            _channel = GrpcChannel.ForAddress("http://localhost:5001");
+            _client = new BankingService.BankingServiceClient(_channel);
+            SetStatus("Connected to server");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Cannot connect to server: {ex.Message}", "Error",
+                MessageBoxButton.OK, MessageBoxImage.Error);
+            SetStatus("Connection failed");
+        }
+    }
+
+    private async void BtnLoadAccounts_Click(object sender, RoutedEventArgs e)
+    {
+        if (_client == null) return;
+
+        try
+        {
+            SetStatus("Loading accounts...");
+            var response = await _client.GetAllAccountsAsync(new Empty());
+
+            CmbAccount.Items.Clear();
+            foreach (var account in response.Accounts)
+            {
+                CmbAccount.Items.Add($"{account.AccountNumber} - {account.AccountHolder}");
+            }
+
+            if (CmbAccount.Items.Count > 0)
+            {
+                CmbAccount.SelectedIndex = 0;
+            }
+
+            SetStatus($"Loaded {response.Accounts.Count} accounts");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error loading accounts: {ex.Message}", "Error",
+                MessageBoxButton.OK, MessageBoxImage.Error);
+            SetStatus("Error loading accounts");
+        }
+    }
+
+    private async void BtnQuery_Click(object sender, RoutedEventArgs e)
+    {
+        if (_client == null || CmbAccount.SelectedItem == null) return;
+
+        try
+        {
+            var accountNumber = GetSelectedAccountNumber();
+            SetStatus("Querying account info...");
+
+            var response = await _client.GetAccountInfoAsync(new AccountRequest
+            {
+                AccountNumber = accountNumber
+            });
+
+            if (response.Success)
+            {
+                TxtAccountHolder.Text = response.AccountHolder;
+                TxtBalance.Text = $"{response.Balance:N0} VND";
+                SetStatus("Query successful");
+            }
+            else
+            {
+                MessageBox.Show(response.Message, "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                SetStatus("Query failed");
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error: {ex.Message}", "Error",
+                MessageBoxButton.OK, MessageBoxImage.Error);
+            SetStatus("Error querying account");
+        }
+    }
+
+    private async void BtnDeposit_Click(object sender, RoutedEventArgs e)
+    {
+        if (_client == null || CmbAccount.SelectedItem == null) return;
+
+        if (!double.TryParse(TxtDepositAmount.Text, out double amount) || amount <= 0)
+        {
+            MessageBox.Show("Please enter a valid amount", "Error",
+                MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
+        try
+        {
+            var accountNumber = GetSelectedAccountNumber();
+            SetStatus("Processing deposit...");
+
+            var response = await _client.DepositAsync(new TransactionRequest
+            {
+                AccountNumber = accountNumber,
+                Amount = amount
+            });
+
+            if (response.Success)
+            {
+                TxtBalance.Text = $"{response.NewBalance:N0} VND";
+                TxtDepositAmount.Clear();
+                AddNotification($"✓ {response.Message}");
+                SetStatus("Deposit successful");
+            }
+            else
+            {
+                MessageBox.Show(response.Message, "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                SetStatus("Deposit failed");
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error: {ex.Message}", "Error",
+                MessageBoxButton.OK, MessageBoxImage.Error);
+            SetStatus("Error processing deposit");
+        }
+    }
+
+    private async void BtnWithdraw_Click(object sender, RoutedEventArgs e)
+    {
+        if (_client == null || CmbAccount.SelectedItem == null) return;
+
+        if (!double.TryParse(TxtWithdrawAmount.Text, out double amount) || amount <= 0)
+        {
+            MessageBox.Show("Please enter a valid amount", "Error",
+                MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
+        try
+        {
+            var accountNumber = GetSelectedAccountNumber();
+            SetStatus("Processing withdrawal...");
+
+            var response = await _client.WithdrawAsync(new TransactionRequest
+            {
+                AccountNumber = accountNumber,
+                Amount = amount
+            });
+
+            if (response.Success)
+            {
+                TxtBalance.Text = $"{response.NewBalance:N0} VND";
+                TxtWithdrawAmount.Clear();
+                AddNotification($"✓ {response.Message}");
+                SetStatus("Withdrawal successful");
+            }
+            else
+            {
+                MessageBox.Show(response.Message, "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                SetStatus("Withdrawal failed");
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error: {ex.Message}", "Error",
+                MessageBoxButton.OK, MessageBoxImage.Error);
+            SetStatus("Error processing withdrawal");
+        }
+    }
+
+    private async void BtnTransfer_Click(object sender, RoutedEventArgs e)
+    {
+        if (_client == null || CmbAccount.SelectedItem == null) return;
+
+        if (string.IsNullOrWhiteSpace(TxtTransferTo.Text))
+        {
+            MessageBox.Show("Please enter destination account", "Error",
+                MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
+        if (!double.TryParse(TxtTransferAmount.Text, out double amount) || amount <= 0)
+        {
+            MessageBox.Show("Please enter a valid amount", "Error",
+                MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
+        try
+        {
+            var fromAccount = GetSelectedAccountNumber();
+            var toAccount = TxtTransferTo.Text.Trim();
+            SetStatus("Processing transfer...");
+
+            var response = await _client.TransferAsync(new TransferRequest
+            {
+                FromAccount = fromAccount,
+                ToAccount = toAccount,
+                Amount = amount
+            });
+
+            if (response.Success)
+            {
+                TxtBalance.Text = $"{response.NewBalance:N0} VND";
+                TxtTransferTo.Clear();
+                TxtTransferAmount.Clear();
+                AddNotification($"✓ {response.Message}");
+                SetStatus("Transfer successful");
+            }
+            else
+            {
+                MessageBox.Show(response.Message, "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                SetStatus("Transfer failed");
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error: {ex.Message}", "Error",
+                MessageBoxButton.OK, MessageBoxImage.Error);
+            SetStatus("Error processing transfer");
+        }
+    }
+
+    private async void BtnSubscribe_Click(object sender, RoutedEventArgs e)
+    {
+        if (_client == null || CmbAccount.SelectedItem == null) return;
+
+        if (_isSubscribed)
+        {
+            // Unsubscribe
+            _notificationCts?.Cancel();
+            _isSubscribed = false;
+            BtnSubscribe.Content = "Theo dõi thông báo";
+            SetStatus("Unsubscribed from notifications");
+            return;
+        }
+
+        try
+        {
+            var accountNumber = GetSelectedAccountNumber();
+            _notificationCts = new CancellationTokenSource();
+
+            BtnSubscribe.Content = "Dừng theo dõi";
+            _isSubscribed = true;
+            SetStatus("Subscribed to notifications");
+
+            var call = _client.SubscribeNotifications(
+                new SubscribeRequest { AccountNumber = accountNumber },
+                cancellationToken: _notificationCts.Token);
+
+            // Read notifications in background
+            _ = Task.Run(async () =>
+            {
+                try
+                {
+                    await foreach (var notification in call.ResponseStream.ReadAllAsync(_notificationCts.Token))
+                    {
+                        Dispatcher.Invoke(() =>
+                        {
+                            var icon = notification.NotificationType switch
+                            {
+                                "TRANSFER_RECEIVED" => "💰",
+                                "TRANSFER_SENT" => "📤",
+                                "DEPOSIT" => "💵",
+                                "WITHDRAW" => "💸",
+                                _ => "📢"
+                            };
+                            AddNotification($"{icon} [{notification.Timestamp}] {notification.Message}");
+                        });
+                    }
+                }
+                catch (OperationCanceledException)
+                {
+                    // Expected when unsubscribing
+                }
+                catch (Exception ex)
+                {
+                    Dispatcher.Invoke(() =>
+                    {
+                        AddNotification($"❌ Notification stream error: {ex.Message}");
+                        _isSubscribed = false;
+                        BtnSubscribe.Content = "Theo dõi thông báo";
+                    });
+                }
+            });
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error subscribing: {ex.Message}", "Error",
+                MessageBoxButton.OK, MessageBoxImage.Error);
+            _isSubscribed = false;
+            BtnSubscribe.Content = "Theo dõi thông báo";
+        }
+    }
+
+    private string GetSelectedAccountNumber()
+    {
+        var selected = CmbAccount.SelectedItem?.ToString() ?? "";
+        return selected.Split(" - ")[0];
+    }
+
+    private void AddNotification(string message)
+    {
+        TxtNotifications.Text = $"{DateTime.Now:HH:mm:ss} - {message}\n{TxtNotifications.Text}";
+    }
+
+    private void SetStatus(string message)
+    {
+        TxtStatus.Text = $"{DateTime.Now:HH:mm:ss} - {message}";
+    }
+
+    private void MainWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
+    {
+        _notificationCts?.Cancel();
+        _channel?.Dispose();
+    }
+}

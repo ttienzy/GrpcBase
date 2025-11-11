@@ -1,0 +1,2 @@
+obj\Debug\net8.0\Protos/Banking.cs \
+obj\Debug\net8.0\Protos/BankingGrpc.cs: Protos/banking.proto

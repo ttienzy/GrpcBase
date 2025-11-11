@@ -1,0 +1,11 @@
+D:\personal\N3-K1\NetworkProgramming (8)\NET\Banking\BankingSystem.Core\bin\Debug\net8.0\BankingSystem.Core.deps.json
+D:\personal\N3-K1\NetworkProgramming (8)\NET\Banking\BankingSystem.Core\bin\Debug\net8.0\BankingSystem.Core.dll
+D:\personal\N3-K1\NetworkProgramming (8)\NET\Banking\BankingSystem.Core\bin\Debug\net8.0\BankingSystem.Core.pdb
+D:\personal\N3-K1\NetworkProgramming (8)\NET\Banking\BankingSystem.Core\obj\Debug\net8.0\BankingSystem.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\personal\N3-K1\NetworkProgramming (8)\NET\Banking\BankingSystem.Core\obj\Debug\net8.0\BankingSystem.Core.AssemblyInfoInputs.cache
+D:\personal\N3-K1\NetworkProgramming (8)\NET\Banking\BankingSystem.Core\obj\Debug\net8.0\BankingSystem.Core.AssemblyInfo.cs
+D:\personal\N3-K1\NetworkProgramming (8)\NET\Banking\BankingSystem.Core\obj\Debug\net8.0\BankingSystem.Core.csproj.CoreCompileInputs.cache
+D:\personal\N3-K1\NetworkProgramming (8)\NET\Banking\BankingSystem.Core\obj\Debug\net8.0\BankingSystem.Core.dll
+D:\personal\N3-K1\NetworkProgramming (8)\NET\Banking\BankingSystem.Core\obj\Debug\net8.0\refint\BankingSystem.Core.dll
+D:\personal\N3-K1\NetworkProgramming (8)\NET\Banking\BankingSystem.Core\obj\Debug\net8.0\BankingSystem.Core.pdb
+D:\personal\N3-K1\NetworkProgramming (8)\NET\Banking\BankingSystem.Core\obj\Debug\net8.0\ref\BankingSystem.Core.dll

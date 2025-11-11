@@ -1,0 +1,30 @@
+[
+  {
+    "AccountNumber": "0123456789",
+    "AccountHolder": "Nguyen Van A",
+    "Balance": 11500000,
+    "CreatedDate": "2025-11-11T23:06:37.4311053+07:00",
+    "IsLocked": false
+  },
+  {
+    "AccountNumber": "0123456790",
+    "AccountHolder": "Tran Thi B",
+    "Balance": 13000000,
+    "CreatedDate": "2025-11-11T23:06:37.4322372+07:00",
+    "IsLocked": false
+  },
+  {
+    "AccountNumber": "0123456791",
+    "AccountHolder": "Le Van C",
+    "Balance": 6000000,
+    "CreatedDate": "2025-11-11T23:06:37.4322389+07:00",
+    "IsLocked": false
+  },
+  {
+    "AccountNumber": "0123456792",
+    "AccountHolder": "Pham Thi D",
+    "Balance": 20000000,
+    "CreatedDate": "2025-11-11T23:06:37.432239+07:00",
+    "IsLocked": false
+  }
+]

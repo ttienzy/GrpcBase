@@ -1,0 +1,76 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "BankingSystem.Contracts";
+
+package banking;
+
+// Service định nghĩa các RPC methods
+service BankingService {
+  // Unary calls - Request/Response đơn giản
+  rpc GetAccountInfo(AccountRequest) returns (AccountResponse);
+  rpc Deposit(TransactionRequest) returns (TransactionResponse);
+  rpc Withdraw(TransactionRequest) returns (TransactionResponse);
+  rpc Transfer(TransferRequest) returns (TransactionResponse);
+  
+  // Server streaming - Thay thế callback mechanism
+  rpc SubscribeNotifications(SubscribeRequest) returns (stream Notification);
+  
+  // Lấy danh sách tất cả tài khoản
+  rpc GetAllAccounts(Empty) returns (AccountListResponse);
+}
+
+// Messages
+message Empty {}
+
+message AccountRequest {
+  string account_number = 1;
+}
+
+message AccountResponse {
+  bool success = 1;
+  string message = 2;
+  string account_number = 3;
+  double balance = 4;
+  string account_holder = 5;
+}
+
+message TransactionRequest {
+  string account_number = 1;
+  double amount = 2;
+}
+
+message TransferRequest {
+  string from_account = 1;
+  string to_account = 2;
+  double amount = 3;
+}
+
+message TransactionResponse {
+  bool success = 1;
+  string message = 2;
+  double new_balance = 3;
+  string transaction_id = 4;
+}
+
+message SubscribeRequest {
+  string account_number = 1;
+}
+
+message Notification {
+  string account_number = 1;
+  string message = 2;
+  double amount = 3;
+  string from_account = 4;
+  string timestamp = 5;
+  string notification_type = 6; // TRANSFER_RECEIVED, DEPOSIT, WITHDRAW
+}
+
+message AccountListResponse {
+  repeated AccountInfo accounts = 1;
+}
+
+message AccountInfo {
+  string account_number = 1;
+  string account_holder = 2;
+  double balance = 3;
+}
