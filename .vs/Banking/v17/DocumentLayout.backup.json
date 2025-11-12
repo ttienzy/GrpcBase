@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\NET\\Banking\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{45F48262-7799-408E-9D68-AA5314134BCA}|BankingSystem.Server\\BankingSystem.Server.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\net\\banking\\bankingsystem.server\\services\\bankingserviceimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{45F48262-7799-408E-9D68-AA5314134BCA}|BankingSystem.Server\\BankingSystem.Server.csproj|solutionrelative:bankingsystem.server\\services\\bankingserviceimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E2F6475F-67A5-434D-A024-E3D5FDF06D3F}|BankingSystem.Client\\BankingSystem.Client.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\net\\banking\\bankingsystem.client\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E2F6475F-67A5-434D-A024-E3D5FDF06D3F}|BankingSystem.Client\\BankingSystem.Client.csproj|solutionrelative:bankingsystem.client\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -15,8 +19,8 @@
       "RelativeMoniker": "D:0:0:{E2F6475F-67A5-434D-A024-E3D5FDF06D3F}|BankingSystem.Client\\BankingSystem.Client.csproj|solutionrelative:bankingsystem.client\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E2F6475F-67A5-434D-A024-E3D5FDF06D3F}|BankingSystem.Client\\BankingSystem.Client.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\net\\banking\\bankingsystem.client\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E2F6475F-67A5-434D-A024-E3D5FDF06D3F}|BankingSystem.Client\\BankingSystem.Client.csproj|solutionrelative:bankingsystem.client\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E8835A50-E0F2-4811-A15D-B9CB0114A756}|BankingSystem.Contracts\\BankingSystem.Contracts.csproj|d:\\personal\\n3-k1\\networkprogramming (8)\\net\\banking\\bankingsystem.contracts\\protos\\banking.proto||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{E8835A50-E0F2-4811-A15D-B9CB0114A756}|BankingSystem.Contracts\\BankingSystem.Contracts.csproj|solutionrelative:bankingsystem.contracts\\protos\\banking.proto||{3B902123-F8A7-4915-9F01-361F908088D0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,51 +62,67 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\NET\\Banking\\BankingSystem.Server\\Program.cs",
               "RelativeDocumentMoniker": "BankingSystem.Server\\Program.cs",
               "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\NET\\Banking\\BankingSystem.Server\\Program.cs",
               "RelativeToolTip": "BankingSystem.Server\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAACkAAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-11T16:28:07.755Z"
+              "WhenOpened": "2025-11-12T02:24:08.496Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\NET\\Banking\\BankingSystem.Client\\MainWindow.xaml",
               "RelativeDocumentMoniker": "BankingSystem.Client\\MainWindow.xaml",
               "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\NET\\Banking\\BankingSystem.Client\\MainWindow.xaml",
               "RelativeToolTip": "BankingSystem.Client\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-11-11T16:08:55.211Z"
+              "WhenOpened": "2025-11-12T02:07:04.838Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "BankingServiceImpl.cs",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\NET\\Banking\\BankingSystem.Server\\Services\\BankingServiceImpl.cs",
+              "RelativeDocumentMoniker": "BankingSystem.Server\\Services\\BankingServiceImpl.cs",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\NET\\Banking\\BankingSystem.Server\\Services\\BankingServiceImpl.cs",
+              "RelativeToolTip": "BankingSystem.Server\\Services\\BankingServiceImpl.cs",
+              "ViewState": "AgIAADYAAAAAAAAAAAAAAEQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-12T01:09:28.578Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\NET\\Banking\\BankingSystem.Client\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "BankingSystem.Client\\MainWindow.xaml.cs",
               "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\NET\\Banking\\BankingSystem.Client\\MainWindow.xaml.cs",
               "RelativeToolTip": "BankingSystem.Client\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMBAAALAAAAAAAAAA==",
+              "ViewState": "AgIAAFMBAAAAAAAAAAAAwHsBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-11T16:00:33.898Z",
+              "WhenOpened": "2025-11-12T00:53:49.395Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AssemblyInfo.cs",
-              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\NET\\Banking\\BankingSystem.Client\\AssemblyInfo.cs",
-              "RelativeDocumentMoniker": "BankingSystem.Client\\AssemblyInfo.cs",
-              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\NET\\Banking\\BankingSystem.Client\\AssemblyInfo.cs",
-              "RelativeToolTip": "BankingSystem.Client\\AssemblyInfo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-11T16:00:30.187Z"
+              "DocumentIndex": 4,
+              "Title": "banking.proto",
+              "DocumentMoniker": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\NET\\Banking\\BankingSystem.Contracts\\Protos\\banking.proto",
+              "RelativeDocumentMoniker": "BankingSystem.Contracts\\Protos\\banking.proto",
+              "ToolTip": "D:\\personal\\N3-K1\\NetworkProgramming (8)\\NET\\Banking\\BankingSystem.Contracts\\Protos\\banking.proto",
+              "RelativeToolTip": "BankingSystem.Contracts\\Protos\\banking.proto",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003853|",
+              "WhenOpened": "2025-11-12T00:52:08.872Z",
+              "EditorCaption": ""
             }
           ]
         },

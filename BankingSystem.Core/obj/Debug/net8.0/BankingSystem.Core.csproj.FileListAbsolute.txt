@@ -9,3 +9,4 @@ D:\personal\N3-K1\NetworkProgramming (8)\NET\Banking\BankingSystem.Core\obj\Debu
 D:\personal\N3-K1\NetworkProgramming (8)\NET\Banking\BankingSystem.Core\obj\Debug\net8.0\refint\BankingSystem.Core.dll
 D:\personal\N3-K1\NetworkProgramming (8)\NET\Banking\BankingSystem.Core\obj\Debug\net8.0\BankingSystem.Core.pdb
 D:\personal\N3-K1\NetworkProgramming (8)\NET\Banking\BankingSystem.Core\obj\Debug\net8.0\ref\BankingSystem.Core.dll
+D:\personal\N3-K1\NetworkProgramming (8)\NET\Banking\BankingSystem.Core\obj\Debug\net8.0\BankingSystem.Core.sourcelink.json

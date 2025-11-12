@@ -10,3 +10,4 @@ D:\personal\N3-K1\NetworkProgramming (8)\NET\Banking\BankingSystem.Contracts\obj
 D:\personal\N3-K1\NetworkProgramming (8)\NET\Banking\BankingSystem.Contracts\obj\Debug\net8.0\refint\BankingSystem.Contracts.dll
 D:\personal\N3-K1\NetworkProgramming (8)\NET\Banking\BankingSystem.Contracts\obj\Debug\net8.0\BankingSystem.Contracts.pdb
 D:\personal\N3-K1\NetworkProgramming (8)\NET\Banking\BankingSystem.Contracts\obj\Debug\net8.0\ref\BankingSystem.Contracts.dll
+D:\personal\N3-K1\NetworkProgramming (8)\NET\Banking\BankingSystem.Contracts\obj\Debug\net8.0\BankingSystem.Contracts.sourcelink.json

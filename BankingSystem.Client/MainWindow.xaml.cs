@@ -1,8 +1,9 @@
 ﻿using BankingSystem.Contracts;
 using Grpc.Core;
 using Grpc.Net.Client;
+using System.Net.Http;
+using System.Threading;
 using System.Windows;
-
 
 namespace BankingSystem.Client;
 
@@ -24,7 +25,16 @@ public partial class MainWindow : Window
     {
         try
         {
-            _channel = GrpcChannel.ForAddress("http://localhost:5001");
+            // Cấu hình channel với timeout dài cho streaming
+            var httpHandler = new HttpClientHandler();
+            var channel = GrpcChannel.ForAddress("http://localhost:5001", new GrpcChannelOptions
+            {
+                HttpHandler = httpHandler,
+                MaxReceiveMessageSize = null,
+                MaxSendMessageSize = null
+            });
+
+            _channel = channel;
             _client = new BankingService.BankingServiceClient(_channel);
             SetStatus("Connected to server");
         }
@@ -260,11 +270,13 @@ public partial class MainWindow : Window
         try
         {
             var accountNumber = GetSelectedAccountNumber();
+            AddNotification($"🔔 Subscribing to notifications for account: {accountNumber}");
+
             _notificationCts = new CancellationTokenSource();
 
             BtnSubscribe.Content = "Dừng theo dõi";
             _isSubscribed = true;
-            SetStatus("Subscribed to notifications");
+            SetStatus($"Subscribed to notifications for {accountNumber}");
 
             var call = _client.SubscribeNotifications(
                 new SubscribeRequest { AccountNumber = accountNumber },
@@ -288,6 +300,12 @@ public partial class MainWindow : Window
                                 _ => "📢"
                             };
                             AddNotification($"{icon} [{notification.Timestamp}] {notification.Message}");
+
+                            // Auto-refresh số dư khi nhận notification giao dịch
+                            if (notification.NotificationType != "SYSTEM")
+                            {
+                                _ = RefreshBalanceAsync();
+                            }
                         });
                     }
                 }
@@ -335,5 +353,28 @@ public partial class MainWindow : Window
     {
         _notificationCts?.Cancel();
         _channel?.Dispose();
+    }
+
+    private async Task RefreshBalanceAsync()
+    {
+        if (_client == null || CmbAccount.SelectedItem == null) return;
+
+        try
+        {
+            var accountNumber = GetSelectedAccountNumber();
+            var response = await _client.GetAccountInfoAsync(new AccountRequest
+            {
+                AccountNumber = accountNumber
+            });
+
+            if (response.Success)
+            {
+                TxtBalance.Text = $"{response.Balance:N0} VND";
+            }
+        }
+        catch
+        {
+            // Ignore errors during auto-refresh
+        }
     }
 }

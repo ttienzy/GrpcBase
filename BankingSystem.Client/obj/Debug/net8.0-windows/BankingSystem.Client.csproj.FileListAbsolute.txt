@@ -26,3 +26,4 @@ D:\personal\N3-K1\NetworkProgramming (8)\NET\Banking\BankingSystem.Client\obj\De
 D:\personal\N3-K1\NetworkProgramming (8)\NET\Banking\BankingSystem.Client\obj\Debug\net8.0-windows\BankingSystem.Client.pdb
 D:\personal\N3-K1\NetworkProgramming (8)\NET\Banking\BankingSystem.Client\obj\Debug\net8.0-windows\BankingSystem.Client.genruntimeconfig.cache
 D:\personal\N3-K1\NetworkProgramming (8)\NET\Banking\BankingSystem.Client\obj\Debug\net8.0-windows\ref\BankingSystem.Client.dll
+D:\personal\N3-K1\NetworkProgramming (8)\NET\Banking\BankingSystem.Client\obj\Debug\net8.0-windows\BankingSystem.Client.sourcelink.json

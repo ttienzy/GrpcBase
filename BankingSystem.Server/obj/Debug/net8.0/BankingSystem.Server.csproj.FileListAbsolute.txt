@@ -36,4 +36,4 @@ D:\personal\N3-K1\NetworkProgramming (8)\NET\Banking\BankingSystem.Server\obj\De
 D:\personal\N3-K1\NetworkProgramming (8)\NET\Banking\BankingSystem.Server\obj\Debug\net8.0\BankingSystem.Server.pdb
 D:\personal\N3-K1\NetworkProgramming (8)\NET\Banking\BankingSystem.Server\obj\Debug\net8.0\BankingSystem.Server.genruntimeconfig.cache
 D:\personal\N3-K1\NetworkProgramming (8)\NET\Banking\BankingSystem.Server\obj\Debug\net8.0\ref\BankingSystem.Server.dll
-D:\personal\N3-K1\NetworkProgramming (8)\NET\Banking\BankingSystem.Server\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+D:\personal\N3-K1\NetworkProgramming (8)\NET\Banking\BankingSystem.Server\obj\Debug\net8.0\BankingSystem.Server.sourcelink.json
